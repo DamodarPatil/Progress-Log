@@ -1,4 +1,4 @@
-baseURL = 'http://example.org/'
+baseURL = 'https://damodarpatil.github.io/Progress-Log/'
 languageCode = 'en-us'
 title = 'Progress Log'
 theme = "PaperMod"
