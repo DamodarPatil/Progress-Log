@@ -49,7 +49,7 @@ buildExpired = false
 
 Building expertise in network security, threat analysis, and incident response. 
 Sharing knowledge and documenting the journey from fundamentals to advanced security practices."""
-    imageUrl = "/images/profile-picture.jpg"
+    imageUrl = "static/images/profile-picture.jpg"
     imageWidth = 140
     imageHeight = 140
     imageTitle = "Damodar Patil"
