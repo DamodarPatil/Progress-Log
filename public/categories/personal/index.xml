@@ -6,14 +6,14 @@
     <description>Recent content in Personal on Progress Log</description>
     <generator>Hugo -- 0.148.2</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 19 Aug 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 19 Aug 2025 10:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/Progress-Log/categories/personal/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Welcome to My Cybersecurity Journey</title>
-      <link>http://localhost:1313/Progress-Log/posts/my-first-post/</link>
-      <pubDate>Tue, 19 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/Progress-Log/posts/my-first-post/</guid>
-      <description>Starting my cybersecurity learning journey and documenting the path from beginner to SOC analyst</description>
+      <title>Starting My Cybersecurity Journey</title>
+      <link>http://localhost:1313/Progress-Log/posts/first-post/</link>
+      <pubDate>Tue, 19 Aug 2025 10:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/Progress-Log/posts/first-post/</guid>
+      <description>Beginning my path to becoming a SOC analyst</description>
     </item>
   </channel>
 </rss>
