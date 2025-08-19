@@ -1,11 +1,14 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
-  <channel>
-    <title>Posts on Progress Log</title>
-    <link>http://localhost:1313/posts/</link>
-    <description>Recent content in Posts on Progress Log</description>
-    <generator>Hugo -- 0.148.2</generator>
-    <language>en-us</language>
-    <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Posts on Progress Log</title><link>https://damodarpatil.github.io/Progress-Log/posts/</link><description>Recent content in Posts on Progress Log</description><generator>Hugo -- 0.148.2</generator><language>en-us</language><lastBuildDate>Tue, 19 Aug 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://damodarpatil.github.io/Progress-Log/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Welcome to My Blog</title><link>https://damodarpatil.github.io/Progress-Log/posts/welcome/</link><pubDate>Tue, 19 Aug 2025 00:00:00 +0000</pubDate><guid>https://damodarpatil.github.io/Progress-Log/posts/welcome/</guid><description>&lt;h1 id="-welcome-to-my-blog">👋 Welcome to My Blog&lt;/h1>
+&lt;p>Hey everyone!&lt;br>
+My name is Damodar, and I’ve started this blog to &lt;strong>document my journey in cybersecurity&lt;/strong>.&lt;/p>
+&lt;p>I’m currently preparing to become a &lt;strong>SOC Analyst&lt;/strong>, and instead of just keeping notes on my computer, I wanted a place where I can:&lt;/p>
+&lt;ul>
+&lt;li>Share what I learn daily.&lt;/li>
+&lt;li>Break down complex concepts into simple explanations.&lt;/li>
+&lt;li>Build a portfolio that shows my growth.&lt;/li>
+&lt;li>Hopefully help others who are starting their own security journey.&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="-why-a-blog">📝 Why a Blog?&lt;/h2>
+&lt;p>Learning cybersecurity can feel overwhelming — there’s networking, Linux, malware analysis, tools like Wireshark, SIEMs, and much more.&lt;br>
+Writing about it forces me to:&lt;/p></description></item></channel></rss>
