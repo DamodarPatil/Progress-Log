@@ -2,14 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://damodarpatil.github.io/Progress-Log/about/</loc>
+    <loc>http://localhost:1313/Progress-Log/about/</loc>
     <lastmod>2025-08-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://damodarpatil.github.io/Progress-Log/</loc>
+    <loc>http://localhost:1313/Progress-Log/categories/</loc>
     <lastmod>2025-08-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://damodarpatil.github.io/Progress-Log/categories/</loc>
+    <loc>http://localhost:1313/Progress-Log/tags/cybersecurity/</loc>
+    <lastmod>2025-08-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://damodarpatil.github.io/Progress-Log/tags/</loc>
+    <loc>http://localhost:1313/Progress-Log/tags/introduction/</loc>
+    <lastmod>2025-08-19T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/Progress-Log/tags/learning/</loc>
+    <lastmod>2025-08-19T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/Progress-Log/categories/personal/</loc>
+    <lastmod>2025-08-19T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/Progress-Log/posts/</loc>
+    <lastmod>2025-08-19T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/Progress-Log/</loc>
+    <lastmod>2025-08-19T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/Progress-Log/tags/</loc>
+    <lastmod>2025-08-19T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/Progress-Log/posts/my-first-post/</loc>
+    <lastmod>2025-08-19T00:00:00+00:00</lastmod>
   </url>
 </urlset>
