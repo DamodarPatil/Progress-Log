@@ -1,0 +1,122 @@
+baseURL = 'http://example.org/'
+languageCode = 'en-us'
+title = 'Progress Log'
+theme = "PaperMod"
+
+# Enable emoji support
+enableEmoji = true
+# Enable robots.txt
+enableRobotsTXT = true
+# Build drafts for local development
+buildDrafts = false
+# Build future content
+buildFuture = false
+# Build expired content
+buildExpired = false
+
+[params]
+    # Show read time
+    ShowReadingTime = true
+    # Show share buttons
+    # ShowShareButtons = true
+    # Show post navigation
+    ShowPostNavLinks = true
+    # Show breadcrumbs
+    ShowBreadCrumbs = true
+    # Show code copy buttons
+    ShowCodeCopyButtons = true
+    # Show word count
+    ShowWordCount = true
+    # Show tags
+     ShowToc = true
+    # Use Hugo's syntax highlighting
+    useHugoToc = true
+    
+    # Cover image settings
+    # images = ["/images/alien-red-planet-scenery-desktop-wallpaper.jpg"]
+    
+    # Analytics (optional)
+    # googleAnalytics = "G-XXXXXXXXXX"
+    
+    # Comments (optional)
+    # disqusShortname = "yourdisqusshortname"
+
+# Profile Mode configuration
+[params.profileMode]
+    enabled = true
+    title = "Damodar Patil"
+    subtitle = """Cybersecurity Enthusiast | SOC Analyst in Training
+
+Building expertise in network security, threat analysis, and incident response. 
+Sharing knowledge and documenting the journey from fundamentals to advanced security practices."""
+    imageUrl = "/images/profile-picture.jpg"
+    imageWidth = 140
+    imageHeight = 140
+    imageTitle = "Damodar Patil"
+
+# Social icons for profile
+[[params.socialIcons]]
+    name = "github"
+    url = "https://github.com/DamodarPatil"
+
+[[params.socialIcons]]
+    name = "linkedin"
+    url = "https://www.linkedin.com/in/damodarpatil/"
+
+[[params.socialIcons]]
+    name = "twitter"
+    url = "https://x.com/damodar_83"
+
+# Search configuration
+[params.fuseOpts]
+    isCaseSensitive = false
+    shouldSort = true
+    location = 0
+    distance = 1000
+    threshold = 0.4
+    minMatchCharLength = 0
+    keys = ["title", "permalink", "summary", "content"]
+
+# Custom assets
+[params.assets]
+    favicon = "/favicon.ico"
+    favicon16x16 = "/favicon-16x16.png"
+    favicon32x32 = "/favicon-32x32.png"
+    apple_touch_icon = "/apple-touch-icon.png"
+    safari_pinned_tab = "/safari-pinned-tab.svg"
+
+# Menu configuration
+[menu]
+    [[menu.main]]
+        identifier = "home"
+        name = "Home"
+        url = "/"
+        weight = 10
+    
+    [[menu.main]]
+        identifier = "posts"
+        name = "Posts"
+        url = "/posts/"
+        weight = 20
+        
+    [[menu.main]]
+        identifier = "about"
+        name = "About Me"
+        url = "/about/"
+        weight = 30
+
+# Markup configuration
+[markup]
+    [markup.goldmark]
+        [markup.goldmark.renderer]
+            unsafe = true
+    [markup.highlight]
+        noClasses = false
+        codeFences = true
+        guessSyntax = true
+        lineNos = true
+        style = "github-dark"
+
+# Output formats (enables search)
+[outputs]
+    home = ["HTML", "RSS", "JSON"]
