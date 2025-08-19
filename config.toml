@@ -47,8 +47,8 @@ buildExpired = false
     title = "Damodar Patil"
     subtitle = """Cybersecurity Enthusiast | SOC Analyst in Training
 
-Building expertise in network security, threat analysis, and incident response. 
-Sharing knowledge and documenting the journey from fundamentals to advanced security practices."""
+Daily study log documenting my journey in network security, threat analysis, and incident response. 
+Recording daily learning progress from fundamentals to advanced security practices."""
     imageUrl = "images/profile-picture.jpg"
     imageWidth = 140
     imageHeight = 140
