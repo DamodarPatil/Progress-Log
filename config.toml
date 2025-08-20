@@ -50,7 +50,7 @@ buildExpired = false
 
 Daily study log documenting my journey in network security, threat analysis, and incident response. 
 Recording daily learning progress from fundamentals to advanced security practices."""
-    imageUrl = "images/profile-picture.jpg"
+    imageUrl = "/images/profile-picture.jpg"
     imageWidth = 140
     imageHeight = 140
     imageTitle = "Damodar Patil"
