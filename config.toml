@@ -4,6 +4,7 @@ title = 'Progress Log'
 theme = "PaperMod"
 relativeURLs = true
 
+
 # Enable emoji support
 enableEmoji = true
 # Enable robots.txt
@@ -16,6 +17,7 @@ buildFuture = false
 buildExpired = false
 
 [params]
+    googleAnalytics = "G-45YT1P594V"
     # Show read time
     ShowReadingTime = true
     # Show share buttons
@@ -35,10 +37,7 @@ buildExpired = false
     
     # Cover image settings
     # images = ["/images/alien-red-planet-scenery-desktop-wallpaper.jpg"]
-    
-    # Analytics (optional)
-     googleAnalytics = "G-45YT1P594V"
-    
+
     # Comments (optional)
     # disqusShortname = "yourdisqusshortname"
 
