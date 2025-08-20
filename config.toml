@@ -45,14 +45,12 @@ buildExpired = false
 [params.profileMode]
     enabled = true
     title = "Damodar Patil"
-    subtitle = """Cybersecurity Enthusiast | SOC Analyst in Training
-
-Daily study log documenting my journey in network security, threat analysis, and incident response. 
-Recording daily learning progress from fundamentals to advanced security practices."""
+    subtitle = """Daily blogs from my cybersecurity study journey  
+Writing as I learn, share, and grow"""
     imageUrl = "/images/profile-picture.jpg"
     imageWidth = 140
     imageHeight = 140
-    imageTitle = "Damodar Patil"
+    imageTitle = "Profile picture"
 
 # Social icons for profile
 [[params.socialIcons]]

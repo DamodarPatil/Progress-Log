@@ -1,4 +1,7 @@
 ---
 title: "Posts"
-description: "My cybersecurity learning journey - documented daily"
+description: "**Welcome to my blog section**."
+type: "section"
+slug: "posts"
+weight: 1
 ---
