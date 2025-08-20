@@ -56,7 +56,7 @@
 
     </style>
 </noscript>
-<link crossorigin="anonymous" href="../../css/custom.min.5cbd28c0c545e31602014b4e10745757ee98f3136f9bb96068af2f29bb7fe82b.css" integrity="sha256-XL0owMVF4xYCAUtOEHRXV&#43;6Y8xNvm7lgaK8vKbt/6Cs=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="../../css/custom.min.e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css" integrity="sha256-47DEQpj8HBSa&#43;/TImW&#43;5JCeuQeRkm5NMpJWZG3hSuFU=" rel="preload stylesheet" as="style">
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-45YT1P594V"></script>
 <script>
@@ -214,10 +214,14 @@
 
         <div class="inner"><nav id="TableOfContents">
   <ul>
-    <li><a href="#why-tcpip-matters">Why TCP/IP Matters</a></li>
-    <li><a href="#the-four-layers-of-tcpip">The Four Layers of TCP/IP</a></li>
-    <li><a href="#mapping-osi-to-tcpip">Mapping OSI to TCP/IP</a></li>
-    <li><a href="#example-flow">Example Flow</a></li>
+    <li>
+      <ul>
+        <li><a href="#why-tcpip-matters">Why TCP/IP Matters</a></li>
+        <li><a href="#the-four-layers-of-tcpip">The Four Layers of TCP/IP</a></li>
+        <li><a href="#mapping-osi-to-tcpip">Mapping OSI to TCP/IP</a></li>
+        <li><a href="#example-flow">Example Flow</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
         </div>
@@ -225,20 +229,20 @@
 </div>
 
   <div class="post-content"><p>The <strong>TCP/IP Model (Transmission Control Protocol / Internet Protocol)</strong> is the foundation of the modern internet. Unlike the OSI Model’s 7 layers, TCP/IP is built around <strong>4 layers</strong>, making it more practical and directly used in real-world networking.</p>
-<h2 id="why-tcpip-matters">Why TCP/IP Matters<a hidden class="anchor" aria-hidden="true" href="#why-tcpip-matters">#</a></h2>
+<h3 id="why-tcpip-matters">Why TCP/IP Matters<a hidden class="anchor" aria-hidden="true" href="#why-tcpip-matters">#</a></h3>
 <ul>
 <li>It’s the <strong>actual model used</strong> in the internet and computer networking</li>
 <li>Defines <strong>protocols</strong> like TCP, IP, HTTP, and DNS</li>
 <li>Easier to apply in real-world troubleshooting compared to OSI</li>
 </ul>
-<h2 id="the-four-layers-of-tcpip">The Four Layers of TCP/IP<a hidden class="anchor" aria-hidden="true" href="#the-four-layers-of-tcpip">#</a></h2>
+<h3 id="the-four-layers-of-tcpip">The Four Layers of TCP/IP<a hidden class="anchor" aria-hidden="true" href="#the-four-layers-of-tcpip">#</a></h3>
 <ol>
 <li><strong>Application Layer</strong> – Combines OSI’s Application, Presentation, and Session layers (e.g., HTTP, DNS, FTP, SMTP)</li>
 <li><strong>Transport Layer</strong> – Handles reliable delivery and error checking (e.g., TCP, UDP)</li>
 <li><strong>Internet Layer</strong> – Responsible for addressing and routing (e.g., IP, ICMP)</li>
 <li><strong>Network Access Layer</strong> – Covers hardware, Ethernet, Wi-Fi, and device drivers (equivalent to OSI’s Data Link + Physical)</li>
 </ol>
-<h2 id="mapping-osi-to-tcpip">Mapping OSI to TCP/IP<a hidden class="anchor" aria-hidden="true" href="#mapping-osi-to-tcpip">#</a></h2>
+<h3 id="mapping-osi-to-tcpip">Mapping OSI to TCP/IP<a hidden class="anchor" aria-hidden="true" href="#mapping-osi-to-tcpip">#</a></h3>
 <table>
   <thead>
       <tr>
@@ -265,7 +269,7 @@
       </tr>
   </tbody>
 </table>
-<h2 id="example-flow">Example Flow<a hidden class="anchor" aria-hidden="true" href="#example-flow">#</a></h2>
+<h3 id="example-flow">Example Flow<a hidden class="anchor" aria-hidden="true" href="#example-flow">#</a></h3>
 <p>When you open a website:</p>
 <ul>
 <li>Browser sends an <strong>HTTP request</strong> → Application Layer</li>

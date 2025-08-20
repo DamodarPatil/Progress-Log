@@ -9,12 +9,12 @@ categories: ["Technical"]
 ---
 The **OSI Model (Open Systems Interconnection Model)** is a conceptual framework that standardizes how different computer systems communicate over a network. It divides communication into **seven layers**, each with specific responsibilities.  
 
-## Why the OSI Model Matters
+### Why the OSI Model Matters
 - Helps **visualize how data flows** through a network  
 - Provides a **common language** for networking professionals  
 - Useful for **troubleshooting** and identifying issues layer by layer  
 
-## The Seven Layers of OSI
+### The Seven Layers of OSI
 1. **Physical Layer** – Deals with hardware, cables, signals, and bits on the wire  
 2. **Data Link Layer** – Ensures reliable node-to-node delivery (e.g., MAC addresses, switches)  
 3. **Network Layer** – Handles addressing and routing (e.g., IP addresses, routers)  
@@ -23,7 +23,7 @@ The **OSI Model (Open Systems Interconnection Model)** is a conceptual framework
 6. **Presentation Layer** – Translates data formats, encryption, and compression  
 7. **Application Layer** – Closest to the user; apps like browsers, email, and FTP work here  
 
-## Example Flow
+### Example Flow
 Imagine sending a message via WhatsApp:
 - You type a message → **Application Layer**
 - Message is formatted and encrypted → **Presentation Layer**
