@@ -37,7 +37,7 @@ buildExpired = false
     # images = ["/images/alien-red-planet-scenery-desktop-wallpaper.jpg"]
     
     # Analytics (optional)
-    # googleAnalytics = "G-XXXXXXXXXX"
+     googleAnalytics = "G-XXXXXXXXXX"
     
     # Comments (optional)
     # disqusShortname = "yourdisqusshortname"
