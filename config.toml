@@ -2,6 +2,7 @@ baseURL = 'https://progresslog.me/'
 languageCode = 'en-us'
 title = 'Progress Log'
 theme = "PaperMod"
+relativeURLs = true
 
 # Enable emoji support
 enableEmoji = true
