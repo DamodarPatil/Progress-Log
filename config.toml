@@ -1,4 +1,4 @@
-baseURL = 'http://progresslog.me/'
+baseURL = 'https://progresslog.me/'
 languageCode = 'en-us'
 title = 'Progress Log'
 theme = "PaperMod"
