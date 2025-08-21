@@ -16,6 +16,7 @@ buildFuture = false
 # Build expired content
 buildExpired = false
 
+
 [params]
     googleAnalytics = "G-45YT1P594V"
     # Show read time
@@ -109,6 +110,11 @@ Writing as I learn, share, and grow"""
         name = "About Me"
         url = "/about/"
         weight = 30
+
+[pagination]
+  disableAliases = false
+  pagerSize = 2
+  path = "/posts/"
 
 # Markup configuration
 [markup]
