@@ -1,6 +1,5 @@
 ---
 title: "About Me"
-date: 2025-08-20
 description: "My journey into cybersecurity and why I write this blog."
 author: "Damodar"
 type: "page"

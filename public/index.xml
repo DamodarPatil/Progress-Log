@@ -6,12 +6,20 @@
     <description>Recent content on Progress Log</description>
     <generator>Hugo -- 0.148.2</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 20 Aug 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 19 Aug 2025 10:43:28 +0530</lastBuildDate>
     <atom:link href="https://progresslog.me/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Diving into Cryptography - My First Steps</title>
+      <link>https://progresslog.me/posts/2025-08-19-progresslog/</link>
+      <pubDate>Tue, 19 Aug 2025 10:43:28 +0530</pubDate>
+      <guid>https://progresslog.me/posts/2025-08-19-progresslog/</guid>
+      <description>&lt;p&gt;So I&amp;rsquo;ve been diving deeper into cybersecurity lately, and one thing that kept coming up everywhere was cryptography. Honestly, I used to think crypto was just for hackers in movies or something super advanced that I&amp;rsquo;d tackle &amp;ldquo;someday.&amp;rdquo; But turns out, this stuff is literally everywhere I look.&lt;/p&gt;
+&lt;p&gt;Started a TryHackMe room on crypto basics last week, and it got me thinking - how did we even get to the point where my WhatsApp messages are secure, but the internet itself isn&amp;rsquo;t? That&amp;rsquo;s a weird contradiction, right?&lt;/p&gt;</description>
+    </item>
     <item>
       <title>About Me</title>
       <link>https://progresslog.me/about/</link>
-      <pubDate>Wed, 20 Aug 2025 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://progresslog.me/about/</guid>
       <description>My journey into cybersecurity and why I write this blog.</description>
     </item>
