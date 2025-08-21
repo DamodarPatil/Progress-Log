@@ -54,9 +54,16 @@ Modulo arithmetic is another one that initially seemed intimidating but is actua
 
 ### Where I'm headed next
 
-I'm planning to dig deeper into how HTTPS actually works next week. I want to understand what happens during that little padlock appearing in my browser. Also curious about digital signatures - how can I prove that a message actually came from who it claims to be from?
+Tomorrow I'm planning to tackle public key cryptography - specifically how asymmetric encryption actually works in practice. I keep hearing about RSA, digital signatures, and key exchange protocols, but I want to understand the mechanics behind them.
 
-The more I learn about this field, the more I realize how much I don't know. But that's kind of exciting. Every concept I understand makes me appreciate how much thought has gone into keeping our digital lives secure.
+I'm particularly curious about:
+
+- How does the whole "two keys" thing actually work mathematically?
+- What's this Diffie-Hellman key exchange I keep seeing mentioned?
+- How do SSH keys fit into all of this?
+- What are digital signatures and how do they prove authenticity?
+
+I have a feeling this is going to be another one of those topics that seems impossible at first but makes perfect sense once the right analogy clicks. The more I learn about cryptography, the more I realize how all these pieces fit together to create the security foundation we rely on every day.
 
 It's wild to think that cryptography went from emperors sending secret military messages to being the foundation of our entire digital economy. And I'm just getting started understanding it all.
 
