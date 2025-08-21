@@ -2,6 +2,7 @@
 title: "Hashing: Digital Fingerprints and Password Security"
 date: 2025-08-21T17:05:11+05:30
 draft: false
+tags: ["cybersecurity", "hashing", "password-security", "cryptography", "tryhackme", "digital-forensics", "data-integrity", "hashcat", "john-the-ripper"]
 ---
 
 So after wrapping up public key cryptography yesterday, I jumped straight into hashing today. I thought I had a decent understanding of what hashing was, but wow, was I wrong. This stuff is way more fundamental to cybersecurity than I realized.

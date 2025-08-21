@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>Hashing: Digital Fingerprints and Password Security | Progress Log</title>
-<meta name="keywords" content="">
+<meta name="keywords" content="cybersecurity, hashing, password-security, cryptography, tryhackme, digital-forensics, data-integrity, hashcat, john-the-ripper">
 <meta name="description" content="So after wrapping up public key cryptography yesterday, I jumped straight into hashing today. I thought I had a decent understanding of what hashing was, but wow, was I wrong. This stuff is way more fundamental to cybersecurity than I realized.
 The TryHackMe room started with a simple question that made me pause: &ldquo;You just downloaded a 6GB file - how do you know it&rsquo;s exactly the same as the original?&rdquo; My first thought was &ldquo;uh, check the file size?&rdquo; But that&rsquo;s obviously not enough. Enter hash values - basically digital fingerprints for data.">
 <meta name="author" content="">
@@ -76,6 +76,12 @@ The TryHackMe room started with a simple question that made me pause: “You jus
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2025-08-21T17:05:11+05:30">
     <meta property="article:modified_time" content="2025-08-21T17:05:11+05:30">
+    <meta property="article:tag" content="Cybersecurity">
+    <meta property="article:tag" content="Hashing">
+    <meta property="article:tag" content="Password-Security">
+    <meta property="article:tag" content="Cryptography">
+    <meta property="article:tag" content="Tryhackme">
+    <meta property="article:tag" content="Digital-Forensics">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hashing: Digital Fingerprints and Password Security">
 <meta name="twitter:description" content="So after wrapping up public key cryptography yesterday, I jumped straight into hashing today. I thought I had a decent understanding of what hashing was, but wow, was I wrong. This stuff is way more fundamental to cybersecurity than I realized.
@@ -110,7 +116,7 @@ The TryHackMe room started with a simple question that made me pause: &ldquo;You
   "name": "Hashing: Digital Fingerprints and Password Security",
   "description": "So after wrapping up public key cryptography yesterday, I jumped straight into hashing today. I thought I had a decent understanding of what hashing was, but wow, was I wrong. This stuff is way more fundamental to cybersecurity than I realized.\nThe TryHackMe room started with a simple question that made me pause: \u0026ldquo;You just downloaded a 6GB file - how do you know it\u0026rsquo;s exactly the same as the original?\u0026rdquo; My first thought was \u0026ldquo;uh, check the file size?\u0026rdquo; But that\u0026rsquo;s obviously not enough. Enter hash values - basically digital fingerprints for data.\n",
   "keywords": [
-    
+    "cybersecurity", "hashing", "password-security", "cryptography", "tryhackme", "digital-forensics", "data-integrity", "hashcat", "john-the-ripper"
   ],
   "articleBody": "So after wrapping up public key cryptography yesterday, I jumped straight into hashing today. I thought I had a decent understanding of what hashing was, but wow, was I wrong. This stuff is way more fundamental to cybersecurity than I realized.\nThe TryHackMe room started with a simple question that made me pause: “You just downloaded a 6GB file - how do you know it’s exactly the same as the original?” My first thought was “uh, check the file size?” But that’s obviously not enough. Enter hash values - basically digital fingerprints for data.\nThe lightbulb moment with file integrity Here’s what clicked for me: a hash function takes ANY size input (could be a single letter, could be a 6GB file) and spits out a fixed-length string. And here’s the crazy part - if even ONE bit changes in that massive file, the entire hash changes completely.\nI tested this myself with two simple text files:\nOne containing just the letter “T” Another containing just the letter “U” The difference? Literally one bit in binary. But their MD5, SHA1, and SHA256 hashes were completely different. That’s the avalanche effect in action, and it’s honestly pretty mind-blowing.\nPassword storage finally makes sense This is where things got really interesting for me. I always wondered why websites say they “can’t tell you your password” when you forget it - they can only reset it. Now I get it!\nThey’re not actually storing your password at all. They’re storing the hash of your password. When you log in, they hash whatever you typed and compare it to the stored hash. If they match, you’re in. If not, you’re blocked.\nIt’s brilliant because even if someone steals their database, they don’t get actual passwords - just hash values that can’t be reversed.\nThe horror stories that made me paranoid The room covered some massive security breaches that honestly made my skin crawl:\nRockYou (2009) - They stored 14+ million passwords in plain text. Just sitting there, readable by anyone who got access to the database. The fact that this file (rockyou.txt) is now a standard wordlist in Kali Linux says everything about how badly they messed up.\nAdobe - Used outdated encryption AND stored password hints in plain text. Sometimes the hints basically gave away the password anyway.\nLinkedIn (2012) - Used SHA-1 (now considered weak) with no salting. This made the hashes vulnerable to rainbow table attacks.\nThese aren’t small companies making rookie mistakes - these are major tech companies that should know better. It really drove home how critical proper password storage is.\nSalting: The game-changer I didn’t know about Here’s something I never understood before: why do two people with the same password get different hash values in secure systems?\nThe answer is salting. Before hashing the password, the system adds a random string (the salt) to it. So even if two users have “password123” as their password, their hashes will be completely different because they each get a unique random salt.\nThis prevents rainbow table attacks, where attackers use precomputed lists of common passwords and their hashes. With salting, those precomputed tables become useless.\nHash cracking tools are terrifyingly effective I knew tools like Hashcat existed, but I didn’t realize how powerful they are. The fact that GPUs can try millions of password combinations per second is genuinely scary.\nWhat’s interesting is that some modern hashing algorithms like bcrypt are specifically designed to be slow, even on GPUs. It’s an arms race between security and attacking tools.\nI tried to run some basic Hashcat examples in my VM, but as expected, VMs don’t play well with GPU acceleration. Mental note: if I ever need to do serious hash cracking (for legitimate purposes!), I’ll need to run it on the host OS.\nBeyond passwords: integrity checking everywhere The more I learned about hashing, the more I realized it’s everywhere:\nEvery time I download a Linux ISO, there’s a SHA256 checksum to verify it Git uses hashes to track changes and ensure repository integrity Digital forensics relies heavily on hashing to prove evidence hasn’t been tampered with Even blockchain technology is built on hashing concepts I actually went and checked some of my recent downloads against their published checksums. It’s oddly satisfying when the hashes match perfectly.\nHMAC: Hashing with a secret sauce Near the end, the room covered HMAC (Hash-based Message Authentication Code), which combines hashing with a secret key. This provides both integrity checking AND authentication - you can verify not just that the message wasn’t changed, but also that it came from someone who knows the secret key.\nThe math behind HMAC involves XOR operations and double hashing, which initially looked intimidating. But breaking it down step by step, it’s actually quite elegant. It’s like putting a tamper-evident seal on a message that only certain people can create.\nThe big picture is becoming clearer What really struck me today is how hashing, symmetric encryption, and asymmetric encryption all work together:\nHashing verifies integrity and stores passwords securely Symmetric encryption provides fast, bulk data protection Asymmetric encryption handles key exchange and digital signatures Each piece solves specific problems, and together they create the foundation for secure digital communication. It’s like finally seeing how all the puzzle pieces fit together.\nSome practical takeaways This stuff isn’t just theoretical for me anymore. I’m already thinking about:\nSetting up proper password hashing in any future projects (bcrypt, scrypt, or Argon2) Always verifying checksums when downloading important files Understanding what’s happening when I see those SSH fingerprint warnings Appreciating why password managers are so much better than reusing passwords What’s next I’m planning to dive deeper into John the Ripper next - one of the most popular password cracking tools I keep hearing about. After learning all this theory about hash cracking and password security, I want to get hands-on experience with how these tools actually work.\nI’m particularly curious about:\nHow John the Ripper compares to Hashcat in terms of capabilities Setting up custom wordlists and rules for more effective cracking Understanding the different attack modes and when to use each one Maybe trying some CTF-style password cracking challenges Should be interesting to see the practical side of all this hashing theory. Plus, understanding how attackers actually crack passwords will help me better secure systems in the future.\nAnother solid day of learning in the books. Time to let this all sink in before tackling the next topic!\n",
   "wordCount" : "1076",
@@ -184,6 +190,11 @@ The TryHackMe room started with a simple question that made me pause: &ldquo;You
                 </a>
             </li>
             <li>
+                <a href="https://progresslog.me/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
                 <a href="https://progresslog.me/about/" title="About Me">
                     <span>About Me</span>
                 </a>
@@ -210,16 +221,20 @@ The TryHackMe room started with a simple question that made me pause: &ldquo;You
 
         <div class="inner"><nav id="TableOfContents">
   <ul>
-    <li><a href="#the-lightbulb-moment-with-file-integrity">The lightbulb moment with file integrity</a></li>
-    <li><a href="#password-storage-finally-makes-sense">Password storage finally makes sense</a></li>
-    <li><a href="#the-horror-stories-that-made-me-paranoid">The horror stories that made me paranoid</a></li>
-    <li><a href="#salting-the-game-changer-i-didnt-know-about">Salting: The game-changer I didn&rsquo;t know about</a></li>
-    <li><a href="#hash-cracking-tools-are-terrifyingly-effective">Hash cracking tools are terrifyingly effective</a></li>
-    <li><a href="#beyond-passwords-integrity-checking-everywhere">Beyond passwords: integrity checking everywhere</a></li>
-    <li><a href="#hmac-hashing-with-a-secret-sauce">HMAC: Hashing with a secret sauce</a></li>
-    <li><a href="#the-big-picture-is-becoming-clearer">The big picture is becoming clearer</a></li>
-    <li><a href="#some-practical-takeaways">Some practical takeaways</a></li>
-    <li><a href="#whats-next">What&rsquo;s next</a></li>
+    <li>
+      <ul>
+        <li><a href="#the-lightbulb-moment-with-file-integrity">The lightbulb moment with file integrity</a></li>
+        <li><a href="#password-storage-finally-makes-sense">Password storage finally makes sense</a></li>
+        <li><a href="#the-horror-stories-that-made-me-paranoid">The horror stories that made me paranoid</a></li>
+        <li><a href="#salting-the-game-changer-i-didnt-know-about">Salting: The game-changer I didn&rsquo;t know about</a></li>
+        <li><a href="#hash-cracking-tools-are-terrifyingly-effective">Hash cracking tools are terrifyingly effective</a></li>
+        <li><a href="#beyond-passwords-integrity-checking-everywhere">Beyond passwords: integrity checking everywhere</a></li>
+        <li><a href="#hmac-hashing-with-a-secret-sauce">HMAC: Hashing with a secret sauce</a></li>
+        <li><a href="#the-big-picture-is-becoming-clearer">The big picture is becoming clearer</a></li>
+        <li><a href="#some-practical-takeaways">Some practical takeaways</a></li>
+        <li><a href="#whats-next">What&rsquo;s next</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
         </div>
@@ -228,7 +243,7 @@ The TryHackMe room started with a simple question that made me pause: &ldquo;You
 
   <div class="post-content"><p>So after wrapping up public key cryptography yesterday, I jumped straight into hashing today. I thought I had a decent understanding of what hashing was, but wow, was I wrong. This stuff is way more fundamental to cybersecurity than I realized.</p>
 <p>The TryHackMe room started with a simple question that made me pause: &ldquo;You just downloaded a 6GB file - how do you know it&rsquo;s exactly the same as the original?&rdquo; My first thought was &ldquo;uh, check the file size?&rdquo; But that&rsquo;s obviously not enough. Enter hash values - basically digital fingerprints for data.</p>
-<h2 id="the-lightbulb-moment-with-file-integrity">The lightbulb moment with file integrity<a hidden class="anchor" aria-hidden="true" href="#the-lightbulb-moment-with-file-integrity">#</a></h2>
+<h3 id="the-lightbulb-moment-with-file-integrity">The lightbulb moment with file integrity<a hidden class="anchor" aria-hidden="true" href="#the-lightbulb-moment-with-file-integrity">#</a></h3>
 <p>Here&rsquo;s what clicked for me: a hash function takes ANY size input (could be a single letter, could be a 6GB file) and spits out a fixed-length string. And here&rsquo;s the crazy part - if even ONE bit changes in that massive file, the entire hash changes completely.</p>
 <p>I tested this myself with two simple text files:</p>
 <ul>
@@ -236,25 +251,25 @@ The TryHackMe room started with a simple question that made me pause: &ldquo;You
 <li>Another containing just the letter &ldquo;U&rdquo;</li>
 </ul>
 <p>The difference? Literally one bit in binary. But their MD5, SHA1, and SHA256 hashes were completely different. That&rsquo;s the avalanche effect in action, and it&rsquo;s honestly pretty mind-blowing.</p>
-<h2 id="password-storage-finally-makes-sense">Password storage finally makes sense<a hidden class="anchor" aria-hidden="true" href="#password-storage-finally-makes-sense">#</a></h2>
+<h3 id="password-storage-finally-makes-sense">Password storage finally makes sense<a hidden class="anchor" aria-hidden="true" href="#password-storage-finally-makes-sense">#</a></h3>
 <p>This is where things got really interesting for me. I always wondered why websites say they &ldquo;can&rsquo;t tell you your password&rdquo; when you forget it - they can only reset it. Now I get it!</p>
 <p>They&rsquo;re not actually storing your password at all. They&rsquo;re storing the hash of your password. When you log in, they hash whatever you typed and compare it to the stored hash. If they match, you&rsquo;re in. If not, you&rsquo;re blocked.</p>
 <p>It&rsquo;s brilliant because even if someone steals their database, they don&rsquo;t get actual passwords - just hash values that can&rsquo;t be reversed.</p>
-<h2 id="the-horror-stories-that-made-me-paranoid">The horror stories that made me paranoid<a hidden class="anchor" aria-hidden="true" href="#the-horror-stories-that-made-me-paranoid">#</a></h2>
+<h3 id="the-horror-stories-that-made-me-paranoid">The horror stories that made me paranoid<a hidden class="anchor" aria-hidden="true" href="#the-horror-stories-that-made-me-paranoid">#</a></h3>
 <p>The room covered some massive security breaches that honestly made my skin crawl:</p>
 <p><strong>RockYou (2009)</strong> - They stored 14+ million passwords in plain text. Just sitting there, readable by anyone who got access to the database. The fact that this file (<code>rockyou.txt</code>) is now a standard wordlist in Kali Linux says everything about how badly they messed up.</p>
 <p><strong>Adobe</strong> - Used outdated encryption AND stored password hints in plain text. Sometimes the hints basically gave away the password anyway.</p>
 <p><strong>LinkedIn (2012)</strong> - Used SHA-1 (now considered weak) with no salting. This made the hashes vulnerable to rainbow table attacks.</p>
 <p>These aren&rsquo;t small companies making rookie mistakes - these are major tech companies that should know better. It really drove home how critical proper password storage is.</p>
-<h2 id="salting-the-game-changer-i-didnt-know-about">Salting: The game-changer I didn&rsquo;t know about<a hidden class="anchor" aria-hidden="true" href="#salting-the-game-changer-i-didnt-know-about">#</a></h2>
+<h3 id="salting-the-game-changer-i-didnt-know-about">Salting: The game-changer I didn&rsquo;t know about<a hidden class="anchor" aria-hidden="true" href="#salting-the-game-changer-i-didnt-know-about">#</a></h3>
 <p>Here&rsquo;s something I never understood before: why do two people with the same password get different hash values in secure systems?</p>
 <p>The answer is salting. Before hashing the password, the system adds a random string (the salt) to it. So even if two users have &ldquo;password123&rdquo; as their password, their hashes will be completely different because they each get a unique random salt.</p>
 <p>This prevents rainbow table attacks, where attackers use precomputed lists of common passwords and their hashes. With salting, those precomputed tables become useless.</p>
-<h2 id="hash-cracking-tools-are-terrifyingly-effective">Hash cracking tools are terrifyingly effective<a hidden class="anchor" aria-hidden="true" href="#hash-cracking-tools-are-terrifyingly-effective">#</a></h2>
+<h3 id="hash-cracking-tools-are-terrifyingly-effective">Hash cracking tools are terrifyingly effective<a hidden class="anchor" aria-hidden="true" href="#hash-cracking-tools-are-terrifyingly-effective">#</a></h3>
 <p>I knew tools like Hashcat existed, but I didn&rsquo;t realize how powerful they are. The fact that GPUs can try millions of password combinations per second is genuinely scary.</p>
 <p>What&rsquo;s interesting is that some modern hashing algorithms like bcrypt are specifically designed to be slow, even on GPUs. It&rsquo;s an arms race between security and attacking tools.</p>
 <p>I tried to run some basic Hashcat examples in my VM, but as expected, VMs don&rsquo;t play well with GPU acceleration. Mental note: if I ever need to do serious hash cracking (for legitimate purposes!), I&rsquo;ll need to run it on the host OS.</p>
-<h2 id="beyond-passwords-integrity-checking-everywhere">Beyond passwords: integrity checking everywhere<a hidden class="anchor" aria-hidden="true" href="#beyond-passwords-integrity-checking-everywhere">#</a></h2>
+<h3 id="beyond-passwords-integrity-checking-everywhere">Beyond passwords: integrity checking everywhere<a hidden class="anchor" aria-hidden="true" href="#beyond-passwords-integrity-checking-everywhere">#</a></h3>
 <p>The more I learned about hashing, the more I realized it&rsquo;s everywhere:</p>
 <ul>
 <li>Every time I download a Linux ISO, there&rsquo;s a SHA256 checksum to verify it</li>
@@ -263,10 +278,10 @@ The TryHackMe room started with a simple question that made me pause: &ldquo;You
 <li>Even blockchain technology is built on hashing concepts</li>
 </ul>
 <p>I actually went and checked some of my recent downloads against their published checksums. It&rsquo;s oddly satisfying when the hashes match perfectly.</p>
-<h2 id="hmac-hashing-with-a-secret-sauce">HMAC: Hashing with a secret sauce<a hidden class="anchor" aria-hidden="true" href="#hmac-hashing-with-a-secret-sauce">#</a></h2>
+<h3 id="hmac-hashing-with-a-secret-sauce">HMAC: Hashing with a secret sauce<a hidden class="anchor" aria-hidden="true" href="#hmac-hashing-with-a-secret-sauce">#</a></h3>
 <p>Near the end, the room covered HMAC (Hash-based Message Authentication Code), which combines hashing with a secret key. This provides both integrity checking AND authentication - you can verify not just that the message wasn&rsquo;t changed, but also that it came from someone who knows the secret key.</p>
 <p>The math behind HMAC involves XOR operations and double hashing, which initially looked intimidating. But breaking it down step by step, it&rsquo;s actually quite elegant. It&rsquo;s like putting a tamper-evident seal on a message that only certain people can create.</p>
-<h2 id="the-big-picture-is-becoming-clearer">The big picture is becoming clearer<a hidden class="anchor" aria-hidden="true" href="#the-big-picture-is-becoming-clearer">#</a></h2>
+<h3 id="the-big-picture-is-becoming-clearer">The big picture is becoming clearer<a hidden class="anchor" aria-hidden="true" href="#the-big-picture-is-becoming-clearer">#</a></h3>
 <p>What really struck me today is how hashing, symmetric encryption, and asymmetric encryption all work together:</p>
 <ul>
 <li>Hashing verifies integrity and stores passwords securely</li>
@@ -274,7 +289,7 @@ The TryHackMe room started with a simple question that made me pause: &ldquo;You
 <li>Asymmetric encryption handles key exchange and digital signatures</li>
 </ul>
 <p>Each piece solves specific problems, and together they create the foundation for secure digital communication. It&rsquo;s like finally seeing how all the puzzle pieces fit together.</p>
-<h2 id="some-practical-takeaways">Some practical takeaways<a hidden class="anchor" aria-hidden="true" href="#some-practical-takeaways">#</a></h2>
+<h3 id="some-practical-takeaways">Some practical takeaways<a hidden class="anchor" aria-hidden="true" href="#some-practical-takeaways">#</a></h3>
 <p>This stuff isn&rsquo;t just theoretical for me anymore. I&rsquo;m already thinking about:</p>
 <ul>
 <li>Setting up proper password hashing in any future projects (bcrypt, scrypt, or Argon2)</li>
@@ -282,7 +297,7 @@ The TryHackMe room started with a simple question that made me pause: &ldquo;You
 <li>Understanding what&rsquo;s happening when I see those SSH fingerprint warnings</li>
 <li>Appreciating why password managers are so much better than reusing passwords</li>
 </ul>
-<h2 id="whats-next">What&rsquo;s next<a hidden class="anchor" aria-hidden="true" href="#whats-next">#</a></h2>
+<h3 id="whats-next">What&rsquo;s next<a hidden class="anchor" aria-hidden="true" href="#whats-next">#</a></h3>
 <p>I&rsquo;m planning to dive deeper into John the Ripper next - one of the most popular password cracking tools I keep hearing about. After learning all this theory about hash cracking and password security, I want to get hands-on experience with how these tools actually work.</p>
 <p>I&rsquo;m particularly curious about:</p>
 <ul>
@@ -299,6 +314,15 @@ The TryHackMe room started with a simple question that made me pause: &ldquo;You
 
   <footer class="post-footer">
     <ul class="post-tags">
+      <li><a href="https://progresslog.me/tags/cybersecurity/">Cybersecurity</a></li>
+      <li><a href="https://progresslog.me/tags/hashing/">Hashing</a></li>
+      <li><a href="https://progresslog.me/tags/password-security/">Password-Security</a></li>
+      <li><a href="https://progresslog.me/tags/cryptography/">Cryptography</a></li>
+      <li><a href="https://progresslog.me/tags/tryhackme/">Tryhackme</a></li>
+      <li><a href="https://progresslog.me/tags/digital-forensics/">Digital-Forensics</a></li>
+      <li><a href="https://progresslog.me/tags/data-integrity/">Data-Integrity</a></li>
+      <li><a href="https://progresslog.me/tags/hashcat/">Hashcat</a></li>
+      <li><a href="https://progresslog.me/tags/john-the-ripper/">John-the-Ripper</a></li>
     </ul>
 <nav class="paginav">
   <a class="next" href="https://progresslog.me/posts/2025-08-20-progresslog/">

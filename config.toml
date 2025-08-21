@@ -65,14 +65,15 @@ Writing as I learn, share, and grow"""
     name = "twitter"
     url = "https://x.com/damodar_83"
 
-# Search configuration
+# Search configuration (enhanced)
 [params.fuseOpts]
     isCaseSensitive = false
     shouldSort = true
     location = 0
     distance = 1000
     threshold = 0.4
-    minMatchCharLength = 0
+    minMatchCharLength = 2
+    limit = 10
     keys = ["title", "permalink", "summary", "content"]
 
 # Custom assets
@@ -96,6 +97,12 @@ Writing as I learn, share, and grow"""
         name = "Posts"
         url = "/posts/"
         weight = 20
+        
+    [[menu.main]]
+        identifier = "search"
+        name = "Search"
+        url = "/search/"
+        weight = 25
         
     [[menu.main]]
         identifier = "about"

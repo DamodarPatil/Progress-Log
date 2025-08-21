@@ -2,6 +2,7 @@
 title: "Public Key Cryptography Finally Clicked"
 date: 2025-08-20T11:03:30+05:30
 draft: false
+tags: ["cybersecurity", "cryptography", "public-key-crypto", "rsa", "diffie-hellman", "ssh", "digital-signatures", "pgp", "tryhackme", "encryption"]
 ---
 
 Okay, so remember how I mentioned diving into cryptography yesterday? Well, I decided to tackle the TryHackMe room on public key cryptography, and honestly, my brain feels like it just went through a blender. But in a good way! 

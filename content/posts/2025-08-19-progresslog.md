@@ -2,6 +2,7 @@
 title: "Diving into Cryptography - My First Steps"
 date: 2025-08-19T10:43:28+05:30
 draft: false
+tags: ["cybersecurity", "cryptography", "encryption", "caesar-cipher", "vigenere-cipher", "symmetric-encryption", "asymmetric-encryption", "tryhackme", "learning-journey"]
 ---
 
 So I've been diving deeper into cybersecurity lately, and one thing that kept coming up everywhere was cryptography. Honestly, I used to think crypto was just for hackers in movies or something super advanced that I'd tackle "someday." But turns out, this stuff is literally everywhere I look.
