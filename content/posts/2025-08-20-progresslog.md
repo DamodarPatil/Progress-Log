@@ -4,7 +4,7 @@ date: 2025-08-20T11:03:30+05:30
 draft: false
 ---
 
-Okay, so remember how I mentioned diving into cryptography last week? Well, I decided to tackle the TryHackMe room on public key cryptography, and honestly, my brain feels like it just went through a blender. But in a good way! 
+Okay, so remember how I mentioned diving into cryptography yesterday? Well, I decided to tackle the TryHackMe room on public key cryptography, and honestly, my brain feels like it just went through a blender. But in a good way! 
 
 I've always heard terms like "RSA" and "digital signatures" thrown around, but they felt like these mysterious concepts that only math wizards could understand. Turns out, with the right analogies, this stuff actually makes sense.
 
