@@ -65,7 +65,7 @@ Writing as I learn, share, and grow"""
     name = "twitter"
     url = "https://x.com/damodar_83"
 
-# Search configuration (enhanced)
+# Search configuration
 [params.fuseOpts]
     isCaseSensitive = false
     shouldSort = true
@@ -74,7 +74,7 @@ Writing as I learn, share, and grow"""
     threshold = 0.4
     minMatchCharLength = 2
     limit = 10
-    keys = ["title", "permalink", "summary", "content"]
+    keys = ["title", "permalink", "summary", "content", "tags"]
 
 # Custom assets
 [params.assets]
