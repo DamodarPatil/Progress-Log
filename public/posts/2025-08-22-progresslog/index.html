@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>John the Ripper: My First Real Password Cracking Experience | Progress Log</title>
+<meta name="keywords" content="cybersecurity, john-the-ripper, password-cracking, hash-cracking, offensive-security, tryhackme, penetration-testing">
+<meta name="description" content="
+Well, I promised yesterday I&rsquo;d dive into John the Ripper, and holy cow, this tool is both fascinating and terrifying. After spending the last few days learning about hashing theory, getting hands-on with an actual password cracking tool really drove home how vulnerable weak passwords actually are.
+I went through the TryHackMe room on John the Ripper today, and it was like getting a masterclass in offensive security. The scary part? This stuff actually works, and it works fast.">
+<meta name="author" content="">
+<link rel="canonical" href="https://progresslog.me/posts/2025-08-22-progresslog/">
+<link crossorigin="anonymous" href="../../assets/css/stylesheet.8fe10233a706bc87f2e08b3cf97b8bd4c0a80f10675a143675d59212121037c0.css" integrity="sha256-j&#43;ECM6cGvIfy4Is8&#43;XuL1MCoDxBnWhQ2ddWSEhIQN8A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://progresslog.me/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://progresslog.me/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://progresslog.me/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://progresslog.me/apple-touch-icon.png">
+<link rel="mask-icon" href="https://progresslog.me/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://progresslog.me/posts/2025-08-22-progresslog/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+<link crossorigin="anonymous" href="../../css/custom.min.e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css" integrity="sha256-47DEQpj8HBSa&#43;/TImW&#43;5JCeuQeRkm5NMpJWZG3hSuFU=" rel="preload stylesheet" as="style">
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-45YT1P594V"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-45YT1P594V');
+</script><meta property="og:url" content="https://progresslog.me/posts/2025-08-22-progresslog/">
+  <meta property="og:site_name" content="Progress Log">
+  <meta property="og:title" content="John the Ripper: My First Real Password Cracking Experience">
+  <meta property="og:description" content="
+Well, I promised yesterday I’d dive into John the Ripper, and holy cow, this tool is both fascinating and terrifying. After spending the last few days learning about hashing theory, getting hands-on with an actual password cracking tool really drove home how vulnerable weak passwords actually are.
+I went through the TryHackMe room on John the Ripper today, and it was like getting a masterclass in offensive security. The scary part? This stuff actually works, and it works fast.">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-08-22T10:13:08+05:30">
+    <meta property="article:modified_time" content="2025-08-22T10:13:08+05:30">
+    <meta property="article:tag" content="Cybersecurity">
+    <meta property="article:tag" content="John-the-Ripper">
+    <meta property="article:tag" content="Password-Cracking">
+    <meta property="article:tag" content="Hash-Cracking">
+    <meta property="article:tag" content="Offensive-Security">
+    <meta property="article:tag" content="Tryhackme">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="John the Ripper: My First Real Password Cracking Experience">
+<meta name="twitter:description" content="
+Well, I promised yesterday I&rsquo;d dive into John the Ripper, and holy cow, this tool is both fascinating and terrifying. After spending the last few days learning about hashing theory, getting hands-on with an actual password cracking tool really drove home how vulnerable weak passwords actually are.
+I went through the TryHackMe room on John the Ripper today, and it was like getting a masterclass in offensive security. The scary part? This stuff actually works, and it works fast.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://progresslog.me/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "John the Ripper: My First Real Password Cracking Experience",
+      "item": "https://progresslog.me/posts/2025-08-22-progresslog/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "John the Ripper: My First Real Password Cracking Experience",
+  "name": "John the Ripper: My First Real Password Cracking Experience",
+  "description": "\nWell, I promised yesterday I\u0026rsquo;d dive into John the Ripper, and holy cow, this tool is both fascinating and terrifying. After spending the last few days learning about hashing theory, getting hands-on with an actual password cracking tool really drove home how vulnerable weak passwords actually are.\nI went through the TryHackMe room on John the Ripper today, and it was like getting a masterclass in offensive security. The scary part? This stuff actually works, and it works fast.\n",
+  "keywords": [
+    "cybersecurity", "john-the-ripper", "password-cracking", "hash-cracking", "offensive-security", "tryhackme", "penetration-testing"
+  ],
+  "articleBody": "\nWell, I promised yesterday I’d dive into John the Ripper, and holy cow, this tool is both fascinating and terrifying. After spending the last few days learning about hashing theory, getting hands-on with an actual password cracking tool really drove home how vulnerable weak passwords actually are.\nI went through the TryHackMe room on John the Ripper today, and it was like getting a masterclass in offensive security. The scary part? This stuff actually works, and it works fast.\nStarting with the basics (and feeling overwhelmed) The room started by explaining what John actually does, and it’s beautifully simple in concept: since you can’t reverse a hash, John just hashes a ton of password guesses and compares them to your target hash. When they match - boom, password cracked.\nThe basic syntax looked straightforward enough:\n1 john --wordlist=/usr/share/wordlists/rockyou.txt hash_to_crack.txt But man, there are so many options and modes. I felt like I was looking at a Swiss Army knife with 50 different tools.\nHash identification became my new puzzle One thing that caught me off guard was how picky John can be about hash formats. The room showed me hash-identifier, this Python tool that tries to guess what type of hash you’re dealing with.\nMy first real test came when I had to crack this mysterious hash: c5a60cc6bbba781c601c5402755ae1044bbf45b78d1183cbf2ca1c865b6c792cf3c6b87791344986c8a832a0f9ca8d0b4afd3d9421a149d57075e1b4e93f90bf\nLooking at that massive string, I had absolutely no idea what type of hash it was. That’s where the hash-id.py tool became my lifesaver.\nI fed it the hash and it told me it was likely SHA-512 or Whirlpool. Not exactly confidence-inspiring when it gives you multiple options, but at least it narrowed it down. The tool would give me a list like “probably this, maybe that, could be this other thing” - definitely not the definitive answer I was hoping for.\nI decided to try Whirlpool first, and that’s when the magic happened:\nAnd boom! John cracked it in what felt like seconds. The password was “colossal” - which honestly made me chuckle. All that cryptographic complexity defeated by a single dictionary word from the rockyou.txt file.\nThe moment when theory met reality Remember that rockyou.txt file I mentioned from the 2009 breach? Well, it turns out that file is John’s bread and butter. 14+ million real passwords that people actually used. Watching John churn through thousands of attempts per second was both mesmerizing and horrifying.\nThat first successful crack really hit me - if your password is in that wordlist, you’re toast. The speed was what shocked me most. All those theoretical discussions about hash security, and here I was watching it get defeated in seconds.\nWindows and Linux password adventures The room walked through cracking actual system passwords, and this is where things got really interesting. Learning about NTLM hashes from Windows SAM databases felt like peeking behind the curtain of how Windows actually works.\nThe Windows NTLM hash was a completely different beast from what I’d been working with. Using john --format=nt --wordlist=/usr/share/wordlists/rockyou.txt, I watched it work through the rockyou wordlist. When it cracked, the password turned out to be “mushroom” - another simple dictionary word that probably took John milliseconds to find.\nWhat struck me was how fast these “secure” password hashes fell to a basic dictionary attack. Different operating system, different hashing algorithm, same result.\nThe Linux side with /etc/shadow was even more fascinating. That unshadow tool that combines /etc/passwd and /etc/shadow files? Genius. I never realized why both files exist, but now it makes sense - separation of public info (usernames, home directories) from sensitive stuff (password hashes).\nThis was the most realistic scenario - cracking an actual Linux system password. After running unshadow, I had a properly formatted file that John could work with. The $6$ prefix told me this was SHA512crypt - one of the stronger hashing algorithms used by modern Linux systems.\nI thought this one might take longer to crack since it’s considered very secure, but I was completely wrong. The root password? “123456”. I actually laughed out loud when I saw that. Here’s a system using strong cryptographic hashing (SHA512crypt), but the user chose literally one of the most common passwords ever.\nSingle crack mode blew my mind This is where John gets really clever. Instead of just trying dictionary words, it can use the username to generate password guesses. So for a user named “markus”, it might try “markus1”, “Markus123”, “markus!”, etc.\nThe concept of word mangling is brilliant and terrifying. John takes whatever information it has about the target (username, full name from GECOS field) and systematically modifies it following common password patterns.\nI tested this on a hash where the password was literally the username with “123!” appended, and John cracked it in single mode faster than wordlist mode. That’s the scary part - people really do create predictable passwords based on their usernames.\nCustom rules: When you know too much about human psychology The custom rules section made me realize how predictable we are as humans. The room showed how to create rules that match common password complexity requirements - capital letter at the start, number and symbol at the end.\nThe syntax looked like regex had a baby with some other markup language:\n1 2 [List.Rules:PoloPassword] cAz\"[0-9][!£$%@]\" That rule basically says “capitalize first letter, then append a number 0-9, then append one of those symbols.” And honestly? That probably covers like 60% of “complex” passwords that meet corporate requirements.\nI tried creating my own rule based on password patterns I’ve seen at previous jobs, and it was depressingly effective when I tested it on sample hashes.\nBeyond text passwords: Files, archives, and keys The second half of the room opened up a whole new world. John can crack ZIP file passwords? RAR archives? SSH private key passphrases? Mind blown.\nThe zip2john and rar2john tools convert these protected files into formats John can work with. I downloaded a password-protected ZIP file and walked through the process:\nzip2john protected.zip \u003e zip_hash.txt john --wordlist=rockyou.txt zip_hash.txt Watch John work its magic Seeing it actually recover the ZIP password was surreal. All those times I’ve forgotten archive passwords - turns out there was a solution all along.\nThe SSH key cracking with ssh2john was particularly interesting since I use SSH keys daily. It’s a good reminder to always use strong passphrases on private keys, even if they never leave your machine.\nWhat these practical exercises taught me Seeing these hashes get cracked so easily was genuinely eye-opening:\nHash strength doesn’t matter if the password is weak - SHA512crypt is considered very secure, but “123456” is still “123456” no matter how you hash it.\nThe rockyou.txt wordlist is terrifyingly effective - Every single password I cracked was in that list of real passwords from the 2009 breach. It’s a sobering reminder of how predictable humans are.\nSpeed matters - Even in my slow VM, John was trying thousands of passwords per second. On dedicated hardware with GPU acceleration, this would be orders of magnitude faster.\nDifferent hash types, same result - Whether it was Whirlpool, NTLM, or SHA512crypt, weak passwords fell just as fast.\nThe ethical weight of this knowledge Throughout the entire room, I kept thinking about the ethical implications. These tools are incredibly powerful, and in the wrong hands, they could do real damage. But understanding how they work is crucial for defense.\nEvery time John cracked a hash in seconds, it reinforced why proper password policies matter. It’s not just theoretical anymore - I’ve seen firsthand how fast weak passwords fall.\nThe most important lesson? Technical security controls are only as strong as the human choices behind them. You can have the most sophisticated hashing algorithm in the world, but if users choose “password123”, you might as well be storing passwords in plain text.\nPerformance observations and limitations Running everything in my VM was… slow. John kept mentioning GPU acceleration and how much faster it could be, but VMs don’t play well with GPU passthrough. I’m definitely adding “run John on bare metal” to my learning todo list.\nEven on my limited setup, watching John try thousands of password combinations per second was impressive. I can only imagine what it’s like on a proper cracking rig with multiple high-end GPUs.\nWhat really stuck with me This wasn’t just about learning a tool - it was about understanding human behavior and how it relates to security. The single crack mode exploiting username patterns, the custom rules matching password complexity requirements, even the ZIP file cracking - it’s all based on predictable human choices.\nThe most valuable lesson? Security isn’t just about strong algorithms and good implementation. It’s about understanding that humans are often the weakest link, and tools like John are really good at exploiting human predictability.\nPractical takeaways for my future I’m definitely going to:\nTest any password policies I create against John’s rule sets Always use truly random passwords instead of following predictable patterns Understand that “complexity requirements” alone don’t create strong passwords Remember that any password-protected file might be crackable given enough time This hands-on experience really reinforced why password policies and user education are so critical in cybersecurity. It’s not enough to implement strong technical controls - you need to help users make better choices too.\n",
+  "wordCount" : "1541",
+  "inLanguage": "en",
+  "datePublished": "2025-08-22T10:13:08+05:30",
+  "dateModified": "2025-08-22T10:13:08+05:30",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://progresslog.me/posts/2025-08-22-progresslog/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Progress Log",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://progresslog.me/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://progresslog.me/" accesskey="h" title="Progress Log (Alt + H)">Progress Log</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://progresslog.me/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://progresslog.me/posts/" title="Posts">
+                    <span>Posts</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://progresslog.me/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://progresslog.me/about/" title="About Me">
+                    <span>About Me</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://progresslog.me/">Home</a>&nbsp;»&nbsp;<a href="https://progresslog.me/posts/">Posts</a></div>
+    <h1 class="post-title entry-hint-parent">
+      John the Ripper: My First Real Password Cracking Experience
+    </h1>
+    <div class="post-meta"><span title='2025-08-22 10:13:08 +0530 IST'>August 22, 2025</span>&nbsp;·&nbsp;8 min&nbsp;·&nbsp;1541 words
+
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#starting-with-the-basics-and-feeling-overwhelmed">Starting with the basics (and feeling overwhelmed)</a></li>
+        <li><a href="#hash-identification-became-my-new-puzzle">Hash identification became my new puzzle</a></li>
+        <li><a href="#the-moment-when-theory-met-reality">The moment when theory met reality</a></li>
+        <li><a href="#windows-and-linux-password-adventures">Windows and Linux password adventures</a></li>
+        <li><a href="#single-crack-mode-blew-my-mind">Single crack mode blew my mind</a></li>
+        <li><a href="#custom-rules-when-you-know-too-much-about-human-psychology">Custom rules: When you know too much about human psychology</a></li>
+        <li><a href="#beyond-text-passwords-files-archives-and-keys">Beyond text passwords: Files, archives, and keys</a></li>
+        <li><a href="#what-these-practical-exercises-taught-me">What these practical exercises taught me</a></li>
+        <li><a href="#the-ethical-weight-of-this-knowledge">The ethical weight of this knowledge</a></li>
+        <li><a href="#performance-observations-and-limitations">Performance observations and limitations</a></li>
+        <li><a href="#what-really-stuck-with-me">What really stuck with me</a></li>
+        <li><a href="#practical-takeaways-for-my-future">Practical takeaways for my future</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><p><img alt="John the Ripper" loading="lazy" src="../../images/John-The-ripper.jpeg"></p>
+<p>Well, I promised yesterday I&rsquo;d dive into John the Ripper, and holy cow, this tool is both fascinating and terrifying. After spending the last few days learning about hashing theory, getting hands-on with an actual password cracking tool really drove home how vulnerable weak passwords actually are.</p>
+<p>I went through the TryHackMe room on John the Ripper today, and it was like getting a masterclass in offensive security. The scary part? This stuff actually works, and it works fast.</p>
+<h3 id="starting-with-the-basics-and-feeling-overwhelmed">Starting with the basics (and feeling overwhelmed)<a hidden class="anchor" aria-hidden="true" href="#starting-with-the-basics-and-feeling-overwhelmed">#</a></h3>
+<p>The room started by explaining what John actually does, and it&rsquo;s beautifully simple in concept: since you can&rsquo;t reverse a hash, John just hashes a ton of password guesses and compares them to your target hash. When they match - boom, password cracked.</p>
+<p>The basic syntax looked straightforward enough:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">john --wordlist=/usr/share/wordlists/rockyou.txt hash_to_crack.txt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>But man, there are so many options and modes. I felt like I was looking at a Swiss Army knife with 50 different tools.</p>
+<h3 id="hash-identification-became-my-new-puzzle">Hash identification became my new puzzle<a hidden class="anchor" aria-hidden="true" href="#hash-identification-became-my-new-puzzle">#</a></h3>
+<p>One thing that caught me off guard was how picky John can be about hash formats. The room showed me <code>hash-identifier</code>, this Python tool that tries to guess what type of hash you&rsquo;re dealing with.</p>
+<p>My first real test came when I had to crack this mysterious hash: <code>c5a60cc6bbba781c601c5402755ae1044bbf45b78d1183cbf2ca1c865b6c792cf3c6b87791344986c8a832a0f9ca8d0b4afd3d9421a149d57075e1b4e93f90bf</code></p>
+<p><img alt="Reading the Hash" loading="lazy" src="../../images/Hashes-read-hash.png"></p>
+<p>Looking at that massive string, I had absolutely no idea what type of hash it was. That&rsquo;s where the <code>hash-id.py</code> tool became my lifesaver.</p>
+<p><img alt="Identifying the Hash Type" loading="lazy" src="../../images/Hashes-Found-hashtype.png"></p>
+<p>I fed it the hash and it told me it was likely SHA-512 or Whirlpool. Not exactly confidence-inspiring when it gives you multiple options, but at least it narrowed it down. The tool would give me a list like &ldquo;probably this, maybe that, could be this other thing&rdquo; - definitely not the definitive answer I was hoping for.</p>
+<p>I decided to try Whirlpool first, and that&rsquo;s when the magic happened:</p>
+<p><img alt="Cracking the Password" loading="lazy" src="../../images/Hashes-Cracked-Password.png"></p>
+<p>And boom! John cracked it in what felt like seconds. The password was &ldquo;colossal&rdquo; - which honestly made me chuckle. All that cryptographic complexity defeated by a single dictionary word from the rockyou.txt file.</p>
+<h3 id="the-moment-when-theory-met-reality">The moment when theory met reality<a hidden class="anchor" aria-hidden="true" href="#the-moment-when-theory-met-reality">#</a></h3>
+<p>Remember that <code>rockyou.txt</code> file I mentioned from the 2009 breach? Well, it turns out that file is John&rsquo;s bread and butter. 14+ million real passwords that people actually used. Watching John churn through thousands of attempts per second was both mesmerizing and horrifying.</p>
+<p>That first successful crack really hit me - if your password is in that wordlist, you&rsquo;re toast. The speed was what shocked me most. All those theoretical discussions about hash security, and here I was watching it get defeated in seconds.</p>
+<h3 id="windows-and-linux-password-adventures">Windows and Linux password adventures<a hidden class="anchor" aria-hidden="true" href="#windows-and-linux-password-adventures">#</a></h3>
+<p>The room walked through cracking actual system passwords, and this is where things got really interesting. Learning about NTLM hashes from Windows SAM databases felt like peeking behind the curtain of how Windows actually works.</p>
+<p><img alt="Cracking a Windows Password" loading="lazy" src="../../images/cracked-password-windows.png"></p>
+<p>The Windows NTLM hash was a completely different beast from what I&rsquo;d been working with. Using <code>john --format=nt --wordlist=/usr/share/wordlists/rockyou.txt</code>, I watched it work through the rockyou wordlist. When it cracked, the password turned out to be &ldquo;mushroom&rdquo; - another simple dictionary word that probably took John milliseconds to find.</p>
+<p>What struck me was how fast these &ldquo;secure&rdquo; password hashes fell to a basic dictionary attack. Different operating system, different hashing algorithm, same result.</p>
+<p>The Linux side with <code>/etc/shadow</code> was even more fascinating. That <code>unshadow</code> tool that combines <code>/etc/passwd</code> and <code>/etc/shadow</code> files? Genius. I never realized why both files exist, but now it makes sense - separation of public info (usernames, home directories) from sensitive stuff (password hashes).</p>
+<p><img alt="Unshadowing and Cracking the Password" loading="lazy" src="../../images/etcshadows-unshadowing-and-cracking-the-password.png"></p>
+<p>This was the most realistic scenario - cracking an actual Linux system password. After running <code>unshadow</code>, I had a properly formatted file that John could work with. The <code>$6$</code> prefix told me this was SHA512crypt - one of the stronger hashing algorithms used by modern Linux systems.</p>
+<p>I thought this one might take longer to crack since it&rsquo;s considered very secure, but I was completely wrong. The root password? &ldquo;123456&rdquo;. I actually laughed out loud when I saw that. Here&rsquo;s a system using strong cryptographic hashing (SHA512crypt), but the user chose literally one of the most common passwords ever.</p>
+<h3 id="single-crack-mode-blew-my-mind">Single crack mode blew my mind<a hidden class="anchor" aria-hidden="true" href="#single-crack-mode-blew-my-mind">#</a></h3>
+<p>This is where John gets really clever. Instead of just trying dictionary words, it can use the username to generate password guesses. So for a user named &ldquo;markus&rdquo;, it might try &ldquo;markus1&rdquo;, &ldquo;Markus123&rdquo;, &ldquo;markus!&rdquo;, etc.</p>
+<p>The concept of word mangling is brilliant and terrifying. John takes whatever information it has about the target (username, full name from GECOS field) and systematically modifies it following common password patterns.</p>
+<p>I tested this on a hash where the password was literally the username with &ldquo;123!&rdquo; appended, and John cracked it in single mode faster than wordlist mode. That&rsquo;s the scary part - people really do create predictable passwords based on their usernames.</p>
+<h3 id="custom-rules-when-you-know-too-much-about-human-psychology">Custom rules: When you know too much about human psychology<a hidden class="anchor" aria-hidden="true" href="#custom-rules-when-you-know-too-much-about-human-psychology">#</a></h3>
+<p>The custom rules section made me realize how predictable we are as humans. The room showed how to create rules that match common password complexity requirements - capital letter at the start, number and symbol at the end.</p>
+<p>The syntax looked like regex had a baby with some other markup language:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[List.Rules:PoloPassword]
+</span></span><span class="line"><span class="cl">cAz&#34;[0-9][!£$%@]&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>That rule basically says &ldquo;capitalize first letter, then append a number 0-9, then append one of those symbols.&rdquo; And honestly? That probably covers like 60% of &ldquo;complex&rdquo; passwords that meet corporate requirements.</p>
+<p>I tried creating my own rule based on password patterns I&rsquo;ve seen at previous jobs, and it was depressingly effective when I tested it on sample hashes.</p>
+<h3 id="beyond-text-passwords-files-archives-and-keys">Beyond text passwords: Files, archives, and keys<a hidden class="anchor" aria-hidden="true" href="#beyond-text-passwords-files-archives-and-keys">#</a></h3>
+<p>The second half of the room opened up a whole new world. John can crack ZIP file passwords? RAR archives? SSH private key passphrases? Mind blown.</p>
+<p>The <code>zip2john</code> and <code>rar2john</code> tools convert these protected files into formats John can work with. I downloaded a password-protected ZIP file and walked through the process:</p>
+<ol>
+<li><code>zip2john protected.zip &gt; zip_hash.txt</code></li>
+<li><code>john --wordlist=rockyou.txt zip_hash.txt</code></li>
+<li>Watch John work its magic</li>
+</ol>
+<p>Seeing it actually recover the ZIP password was surreal. All those times I&rsquo;ve forgotten archive passwords - turns out there was a solution all along.</p>
+<p>The SSH key cracking with <code>ssh2john</code> was particularly interesting since I use SSH keys daily. It&rsquo;s a good reminder to always use strong passphrases on private keys, even if they never leave your machine.</p>
+<h3 id="what-these-practical-exercises-taught-me">What these practical exercises taught me<a hidden class="anchor" aria-hidden="true" href="#what-these-practical-exercises-taught-me">#</a></h3>
+<p>Seeing these hashes get cracked so easily was genuinely eye-opening:</p>
+<ol>
+<li>
+<p><strong>Hash strength doesn&rsquo;t matter if the password is weak</strong> - SHA512crypt is considered very secure, but &ldquo;123456&rdquo; is still &ldquo;123456&rdquo; no matter how you hash it.</p>
+</li>
+<li>
+<p><strong>The rockyou.txt wordlist is terrifyingly effective</strong> - Every single password I cracked was in that list of real passwords from the 2009 breach. It&rsquo;s a sobering reminder of how predictable humans are.</p>
+</li>
+<li>
+<p><strong>Speed matters</strong> - Even in my slow VM, John was trying thousands of passwords per second. On dedicated hardware with GPU acceleration, this would be orders of magnitude faster.</p>
+</li>
+<li>
+<p><strong>Different hash types, same result</strong> - Whether it was Whirlpool, NTLM, or SHA512crypt, weak passwords fell just as fast.</p>
+</li>
+</ol>
+<h3 id="the-ethical-weight-of-this-knowledge">The ethical weight of this knowledge<a hidden class="anchor" aria-hidden="true" href="#the-ethical-weight-of-this-knowledge">#</a></h3>
+<p>Throughout the entire room, I kept thinking about the ethical implications. These tools are incredibly powerful, and in the wrong hands, they could do real damage. But understanding how they work is crucial for defense.</p>
+<p>Every time John cracked a hash in seconds, it reinforced why proper password policies matter. It&rsquo;s not just theoretical anymore - I&rsquo;ve seen firsthand how fast weak passwords fall.</p>
+<p>The most important lesson? Technical security controls are only as strong as the human choices behind them. You can have the most sophisticated hashing algorithm in the world, but if users choose &ldquo;password123&rdquo;, you might as well be storing passwords in plain text.</p>
+<h3 id="performance-observations-and-limitations">Performance observations and limitations<a hidden class="anchor" aria-hidden="true" href="#performance-observations-and-limitations">#</a></h3>
+<p>Running everything in my VM was&hellip; slow. John kept mentioning GPU acceleration and how much faster it could be, but VMs don&rsquo;t play well with GPU passthrough. I&rsquo;m definitely adding &ldquo;run John on bare metal&rdquo; to my learning todo list.</p>
+<p>Even on my limited setup, watching John try thousands of password combinations per second was impressive. I can only imagine what it&rsquo;s like on a proper cracking rig with multiple high-end GPUs.</p>
+<h3 id="what-really-stuck-with-me">What really stuck with me<a hidden class="anchor" aria-hidden="true" href="#what-really-stuck-with-me">#</a></h3>
+<p>This wasn&rsquo;t just about learning a tool - it was about understanding human behavior and how it relates to security. The single crack mode exploiting username patterns, the custom rules matching password complexity requirements, even the ZIP file cracking - it&rsquo;s all based on predictable human choices.</p>
+<p>The most valuable lesson? Security isn&rsquo;t just about strong algorithms and good implementation. It&rsquo;s about understanding that humans are often the weakest link, and tools like John are really good at exploiting human predictability.</p>
+<h3 id="practical-takeaways-for-my-future">Practical takeaways for my future<a hidden class="anchor" aria-hidden="true" href="#practical-takeaways-for-my-future">#</a></h3>
+<p>I&rsquo;m definitely going to:</p>
+<ul>
+<li>Test any password policies I create against John&rsquo;s rule sets</li>
+<li>Always use truly random passwords instead of following predictable patterns</li>
+<li>Understand that &ldquo;complexity requirements&rdquo; alone don&rsquo;t create strong passwords</li>
+<li>Remember that any password-protected file might be crackable given enough time</li>
+</ul>
+<p>This hands-on experience really reinforced why password policies and user education are so critical in cybersecurity. It&rsquo;s not enough to implement strong technical controls - you need to help users make better choices too.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://progresslog.me/tags/cybersecurity/">Cybersecurity</a></li>
+      <li><a href="https://progresslog.me/tags/john-the-ripper/">John-the-Ripper</a></li>
+      <li><a href="https://progresslog.me/tags/password-cracking/">Password-Cracking</a></li>
+      <li><a href="https://progresslog.me/tags/hash-cracking/">Hash-Cracking</a></li>
+      <li><a href="https://progresslog.me/tags/offensive-security/">Offensive-Security</a></li>
+      <li><a href="https://progresslog.me/tags/tryhackme/">Tryhackme</a></li>
+      <li><a href="https://progresslog.me/tags/penetration-testing/">Penetration-Testing</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="next" href="https://progresslog.me/posts/2025-08-21-progresslog/">
+    <span class="title">Next »</span>
+    <br>
+    <span>Hashing: Digital Fingerprints and Password Security</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://progresslog.me/">Progress Log</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

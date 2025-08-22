@@ -3,12 +3,39 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://progresslog.me/posts/</loc>
-    <lastmod>2025-08-21T17:05:11+05:30</lastmod>
-  </url><url>
-    <loc>https://progresslog.me/tags/cryptography/</loc>
-    <lastmod>2025-08-21T17:05:11+05:30</lastmod>
+    <lastmod>2025-08-22T10:13:08+05:30</lastmod>
   </url><url>
     <loc>https://progresslog.me/tags/cybersecurity/</loc>
+    <lastmod>2025-08-22T10:13:08+05:30</lastmod>
+  </url><url>
+    <loc>https://progresslog.me/tags/hash-cracking/</loc>
+    <lastmod>2025-08-22T10:13:08+05:30</lastmod>
+  </url><url>
+    <loc>https://progresslog.me/posts/2025-08-22-progresslog/</loc>
+    <lastmod>2025-08-22T10:13:08+05:30</lastmod>
+  </url><url>
+    <loc>https://progresslog.me/tags/john-the-ripper/</loc>
+    <lastmod>2025-08-22T10:13:08+05:30</lastmod>
+  </url><url>
+    <loc>https://progresslog.me/tags/offensive-security/</loc>
+    <lastmod>2025-08-22T10:13:08+05:30</lastmod>
+  </url><url>
+    <loc>https://progresslog.me/tags/password-cracking/</loc>
+    <lastmod>2025-08-22T10:13:08+05:30</lastmod>
+  </url><url>
+    <loc>https://progresslog.me/tags/penetration-testing/</loc>
+    <lastmod>2025-08-22T10:13:08+05:30</lastmod>
+  </url><url>
+    <loc>https://progresslog.me/</loc>
+    <lastmod>2025-08-22T10:13:08+05:30</lastmod>
+  </url><url>
+    <loc>https://progresslog.me/tags/</loc>
+    <lastmod>2025-08-22T10:13:08+05:30</lastmod>
+  </url><url>
+    <loc>https://progresslog.me/tags/tryhackme/</loc>
+    <lastmod>2025-08-22T10:13:08+05:30</lastmod>
+  </url><url>
+    <loc>https://progresslog.me/tags/cryptography/</loc>
     <lastmod>2025-08-21T17:05:11+05:30</lastmod>
   </url><url>
     <loc>https://progresslog.me/tags/data-integrity/</loc>
@@ -26,19 +53,7 @@
     <loc>https://progresslog.me/posts/2025-08-21-progresslog/</loc>
     <lastmod>2025-08-21T17:05:11+05:30</lastmod>
   </url><url>
-    <loc>https://progresslog.me/tags/john-the-ripper/</loc>
-    <lastmod>2025-08-21T17:05:11+05:30</lastmod>
-  </url><url>
     <loc>https://progresslog.me/tags/password-security/</loc>
-    <lastmod>2025-08-21T17:05:11+05:30</lastmod>
-  </url><url>
-    <loc>https://progresslog.me/</loc>
-    <lastmod>2025-08-21T17:05:11+05:30</lastmod>
-  </url><url>
-    <loc>https://progresslog.me/tags/</loc>
-    <lastmod>2025-08-21T17:05:11+05:30</lastmod>
-  </url><url>
-    <loc>https://progresslog.me/tags/tryhackme/</loc>
     <lastmod>2025-08-21T17:05:11+05:30</lastmod>
   </url><url>
     <loc>https://progresslog.me/tags/diffie-hellman/</loc>
